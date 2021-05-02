@@ -13,22 +13,12 @@ graph = []
 
 OptClique = []
 
-def gEdges(n, d):
-  vertices = int(math.pow(2,n))
-  edges = []
-  for i in range (vertices):
-    for j in range(i+1, vertices):
-      edges.append([i+1, j+1])
-  print("------")
-  return edges
-
 def compAB(vertex, C_prev):
   global graph
   AnB = []
   for i in C_prev:
     if graph[vertex][i] == 1: #and i > vertex:
       AnB.append(i)
-  # print("vertex - ",vertex, "Si - ", C_prev, "Intersection value - ", AnB)
   return AnB
 
 def Si(i, v):

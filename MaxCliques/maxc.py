@@ -11,15 +11,6 @@ graph = []
 AnB = []
 prob_max_cli = 0
 
-
-def gEdges(n, d):
-  vertices = int(math.pow(2,n))
-  edges = []
-  for i in range (vertices):
-    for j in range(i+1, vertices):
-      edges.append([i+1, j+1])
-  return edges
-
 def compAB(vertex, C_prev):
   global graph
   AnB = []
@@ -43,7 +34,7 @@ def maxCliques(l):
     # OptClique = [i for i in OptClique if i != 0]
     # print("*"*10, OptClique)
   if l > 0:
-    # check append, addd in specific location, do initial array initialization
+    # check append, add in specific location, do initial array initialization
     C[l]=(compAB(X[l-1], C[l-1]))
   # adding bounding
   M = l + len(C[l]) 
