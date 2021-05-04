@@ -69,13 +69,13 @@ def Convert(string):
 if __name__=='__main__':
   max_ = 0
   found = False
-  # v = [0, 1, 2, 3, 4, 5, 6]
-  # edges = [[0,1], [0,3], [0,6], [1,2], [1,4], [1,5], [2,3], [2,4], [2,5], [3,6]]
-  # edges = [[0,1], [0,2], [1,2], [1,3], [1,4], [2,3], [2,4], [2,5], [3,4], [3,5], [4,5]]
   # creating an adjacency matrix for the graph
   # test files
-  string_edges = open('./graphs/ostergard.txt', 'r').read()
-  # string_edges = open('./graphs/sample1.txt', 'r').read()
+  # string_edges = open('./graphs/brock200_1.clq', 'r').read()
+  # with open("./graphs/MANN_a9.clq", "rb") as fin:
+  #   string_edges = fin.read().decode('utf-8')
+    # print((string_edges.decode('utf-8')))
+  string_edges = open('./graphs/ost.txt', 'r').read()
   # string_edges = open('./graphs/graphv16_m30_mc7.txt', 'r').read()
   # string_edges = open('./graphs/graphv16_m60_mc5.txt', 'r').read()
   # string_edges = open('./graphs/graphv16_m90_mc3.txt', 'r').read()
@@ -89,14 +89,14 @@ if __name__=='__main__':
   str1 = string_edges
   Convert(str1)
   n = no_of_vertices
-  v = list(range(0, no_of_vertices))
-
-  graph = [[0 for i in range(n)] for j in range(n)]
+  v = list(range(1, no_of_vertices+1))
+  print(n, v)
+  graph = [[0 for i in range(n+1)] for j in range(n+1)]
   for i in edges:
     v1 = i[0]
     v2 = i[1]
-    graph[v1][v2] = 1
-    graph[v2][v1] = 1
+    graph[v1-1][v2-1] = 1
+    graph[v2-1][v1-1] = 1
   c=[[0]]*(n)
   X = [0]*(n)
   # print(graph)
@@ -109,7 +109,7 @@ if __name__=='__main__':
   # print("Max Clique = ",OptClique)
   while OptClique[-1] == 0:
         OptClique.pop()
-  print("refined 22- ", OptClique)
+  print("Max Clique - ", OptClique)
   print("Backtracking nodes = ", backtrack)
-
+  
   
