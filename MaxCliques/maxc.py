@@ -1,4 +1,7 @@
 import math
+import sys
+sys.path.append('../')
+from Util.compAB import *
 import time
 start_time = time.time()
 backtrack = 0
@@ -10,14 +13,6 @@ n = 0
 graph = []
 AnB = []
 prob_max_cli = 0
-
-def compAB(vertex, C_prev):
-  global graph
-  AnB = []
-  for i in C_prev:
-    if graph[vertex][i] == 1 and i > vertex:
-      AnB.append(i)
-  return AnB
 
 def maxCliques(l):
   global backtrack
@@ -35,7 +30,7 @@ def maxCliques(l):
     # print("*"*10, OptClique)
   if l > 0:
     # check append, add in specific location, do initial array initialization
-    C[l]=(compAB(X[l-1], C[l-1]))
+    C[l]=(compAB(X[l-1], C[l-1], graph))
   # adding bounding
   M = l + len(C[l]) 
   
@@ -73,22 +68,16 @@ def Convert(string):
 if __name__=='__main__':
   OptSize = 0
   
-  
-  # edges = [[0,1], [0,3], [0,6], [1,2], [1,4], [1,5], [2,3], [2,4], [2,5], [3,6]]
-  # edges = [[0,1], [0,6], [1,2], [1,5], [1,6], [2,3], [2,4], [3,4], [5,6]]
-  # edges = [[0,1], [0,2], [1,2], [1,3], [1,4], [2,3], [2,4], [2,5], [3,4], [3,5], [4,5]]
-  # edges = [[0,1], [1,2], [1,3], [2,3]]
-  
   # test files
-  string_edges = open('./a3graphs/ostergard.txt', 'r').read()
-  # string_edges = open('./a3graphs/sample1.txt', 'r').read()
-  # string_edges = open('./a3graphs/sample2.txt', 'r').read()
-  # string_edges = open('./a3graphs/graphv16_m30_mc7.txt', 'r').read()
-  # string_edges = open('./a3graphs/graphv16_m60_mc5.txt', 'r').read()
-  # string_edges = open('./a3graphs/graphv16_m90_mc3.txt', 'r').read()
-  # string_edges = open('./a3graphs/rand_v100d30_mc6.txt', 'r').read()
-  # string_edges = open('./a3graphs/rand_v100d50_mc9.txt', 'r').read()
-  # string_edges = open('./a3graphs/rand_v100d70_mc15.txt', 'r').read()
+  string_edges = open('./graphs/ostergard.txt', 'r').read()
+  # string_edges = open('./graphs/sample1.txt', 'r').read()
+  # string_edges = open('./graphs/sample2.txt', 'r').read()
+  # string_edges = open('./graphs/graphv16_m30_mc7.txt', 'r').read()
+  # string_edges = open('./graphs/graphv16_m60_mc5.txt', 'r').read()
+  # string_edges = open('./graphs/graphv16_m90_mc3.txt', 'r').read()
+  # string_edges = open('./graphs/rand_v100d30_mc6.txt', 'r').read()
+  # string_edges = open('./graphs/rand_v100d50_mc9.txt', 'r').read()
+  # string_edges = open('./graphs/rand_v100d70_mc15.txt', 'r').read()
   V = 0
   edges = []
   no_of_edges = 0
@@ -117,7 +106,6 @@ if __name__=='__main__':
   maxCliques(0)
   print("\nTime taken to execute - %s seconds\n" % (time.time() - start_time))
   print("A(n, 4) = ",OptSize)
-  # print("Opt clique--", OptClique)
   while OptClique[-1] == 0:
         OptClique.pop()
   print("Clique - ", OptClique)
@@ -125,7 +113,7 @@ if __name__=='__main__':
   #   if val!=0:
   #     print(i)
   print("Backtracking nodes = ", backtrack)
-  # hammingDistance(1, 0)
+
   
 
   

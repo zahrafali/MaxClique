@@ -1,6 +1,8 @@
 import math
-from Util.hamming_distance import *
 from Util.graph_edges import *
+import sys
+sys.path.append('../')
+from Util.compAB import *
 import time
 start_time = time.time()
 
@@ -15,14 +17,6 @@ X = []
 graph = []
 
 OptClique = [] 
-
-def compAB(vertex, C_prev):
-  global graph
-  AnB = []
-  for i in C_prev:
-    if graph[vertex][i] == 1: #and i > vertex:
-      AnB.append(i)
-  return AnB
 
 def Si(i, v):
   return v[i:n]
@@ -50,7 +44,7 @@ def clique(U, size):
     if U == None or len(U) == 0:
       clique([], size+1)
     else:
-      clique(compAB(v[i], U), size+1)
+      clique(compAB(v[i], U, graph), size+1)
     if found == True:
       return
   
@@ -78,7 +72,7 @@ if __name__=='__main__':
   for i in range(n-1, -1, -1):
     found = False
     X[0] = i
-    clique(compAB(v[i], Si(i, v)), 1)
+    clique(compAB(v[i], Si(i, v), graph), 1)
     c[i] = max_
   print("\nTime taken to execute - %s seconds\n" % (time.time() - start_time))
   print("n = ", code_len)
@@ -92,4 +86,3 @@ if __name__=='__main__':
   print("Codes - ", OptClique)
   print("Backtracking nodes = ", backtrack)
 
-  

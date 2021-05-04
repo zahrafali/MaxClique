@@ -1,4 +1,7 @@
 import math
+import sys
+sys.path.append('../')
+from Util.compAB import *
 import time
 start_time = time.time()
 backtrack = 0
@@ -13,23 +16,13 @@ graph = []
 
 OptClique = []
 
-def compAB(vertex, C_prev):
-  global graph
-  AnB = []
-  for i in C_prev:
-    if graph[vertex][i] == 1: #and i > vertex:
-      AnB.append(i)
-  return AnB
-
 def Si(i, v):
   return v[i:n]
 
 def clique(U, size):
   global max_, c, found, X, OptClique
-  # print(c[n], size)
   global backtrack
   backtrack = backtrack+1
-  # print(OptClique)
   if U == None or len(U) == 0:
     if size > max_:
       max_ = size
@@ -40,14 +33,11 @@ def clique(U, size):
   
   
   while len(U) != 0:
-    # print("size, U", size, U)
     if size + len(U) <= max_:
-      # print("Size bound")
       return
     #assuming vertices start from 0 ... n
     i = min(U)
     if size + c[i] <= max_:
-      # print("russian doll bound", X)
       return
     U.remove(v[i])
     X[size] = v[i]
@@ -55,7 +45,7 @@ def clique(U, size):
     if U == None or len(U) == 0:
       clique([], size+1)
     else:
-      clique(compAB(v[i], U), size+1)
+      clique(compAB(v[i], U, graph), size+1)
     if found == True:
       return
   return
@@ -84,14 +74,14 @@ if __name__=='__main__':
   # edges = [[0,1], [0,2], [1,2], [1,3], [1,4], [2,3], [2,4], [2,5], [3,4], [3,5], [4,5]]
   # creating an adjacency matrix for the graph
   # test files
-  string_edges = open('./a3graphs/ostergard.txt', 'r').read()
-  # string_edges = open('./a3graphs/sample1.txt', 'r').read()
-  # string_edges = open('./a3graphs/graphv16_m30_mc7.txt', 'r').read()
-  # string_edges = open('./a3graphs/graphv16_m60_mc5.txt', 'r').read()
-  # string_edges = open('./a3graphs/graphv16_m90_mc3.txt', 'r').read()
-  # string_edges = open('./a3graphs/rand_v100d30_mc6.txt', 'r').read()
-  # string_edges = open('./a3graphs/rand_v100d50_mc9.txt', 'r').read()
-  # string_edges = open('./a3graphs/rand_v100d70_mc15.txt', 'r').read()
+  string_edges = open('./graphs/ostergard.txt', 'r').read()
+  # string_edges = open('./graphs/sample1.txt', 'r').read()
+  # string_edges = open('./graphs/graphv16_m30_mc7.txt', 'r').read()
+  # string_edges = open('./graphs/graphv16_m60_mc5.txt', 'r').read()
+  # string_edges = open('./graphs/graphv16_m90_mc3.txt', 'r').read()
+  # string_edges = open('./graphs/rand_v100d30_mc6.txt', 'r').read()
+  # string_edges = open('./graphs/rand_v100d50_mc9.txt', 'r').read()
+  # string_edges = open('./graphs/rand_v100d70_mc15.txt', 'r').read()
   v = 0
   edges = []
   no_of_edges = 0
@@ -112,10 +102,8 @@ if __name__=='__main__':
   # print(graph)
   for i in range(n-1, -1, -1):
     found = False
-    # print("apple--", compAB(v[i], Si(i, v)))
     X[0] = i
-    # print("X--", X, Si(i, v))
-    clique(compAB(v[i], Si(i, v)), 1)
+    clique(compAB(v[i], Si(i, v), graph), 1)
     c[i] = max_
   print("\nTime taken to execute - %s seconds\n" % (time.time() - start_time))
   # print("Max Clique = ",OptClique)

@@ -1,3 +1,6 @@
+import math
+from Util.hamming_distance import *
+
 def gEdges(n, d):
   vertices = int(math.pow(2,n))
   edges = []

@@ -1,6 +1,8 @@
 import math
-from Util.hamming_distance import *
 from Util.graph_edges import *
+import sys
+sys.path.append('../')
+from Util.compAB import *
 import time
 start_time = time.time()
 
@@ -13,28 +15,6 @@ n = 0
 graph = []
 AnB = []
 prob_max_cli = 0
-# def hammingDistance(n1, n2) : 
-    
-#     #Calculate the XOR of two numbers
-#     x = n1 ^ n2  
-#     setBits = 0
-#     # count the number of 1s 
-#     while (x > 0) : 
-#         setBits += x & 1
-#         x >>= 1
-#     return setBits  
-
-def compAB(vertex, C_prev):
-  global graph
-  AnB = []
-  # no need to intersect after, check in c prev in here, check for element in cPrev
-  for i in C_prev:
-    if graph[vertex][i] == 1 and i > vertex:
-      AnB.append(i)
-  # This calculates the value of A n B n C[l-1] (formula)
-  # can elemintate this step
-  # AnB = sorted(list(set(AnB).intersection(set(C_prev))))
-  return AnB
 
 def maxCliques(l):
   global backtrack
@@ -47,7 +27,7 @@ def maxCliques(l):
   
   if l > 0:
     # remove append, add in specific location, do initial array initialization
-    C[l] = compAB(X[l-1], C[l-1])
+    C[l] = compAB(X[l-1], C[l-1], graph)
 
   # adding bounding
   M = l + len(C[l])  
