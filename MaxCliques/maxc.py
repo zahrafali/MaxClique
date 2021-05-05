@@ -69,7 +69,8 @@ if __name__=='__main__':
   OptSize = 0
   
   # test files
-  string_edges = open('./graphs/ostergard.txt', 'r').read()
+  # string_edges = open('./graphs/ost.txt', 'r').read()
+  string_edges = open('./graphs/MANN_a9.clq', 'r').read()
   # string_edges = open('./graphs/sample1.txt', 'r').read()
   # string_edges = open('./graphs/sample2.txt', 'r').read()
   # string_edges = open('./graphs/graphv16_m30_mc7.txt', 'r').read()
@@ -85,7 +86,7 @@ if __name__=='__main__':
   str1 = string_edges
   Convert(str1)
   n = no_of_vertices
-  V = list(range(0, no_of_vertices))
+  V = list(range(1, no_of_vertices+1))
 
   # V = [i for i in range(0, n)]
   C=[0]*(n)
@@ -99,8 +100,8 @@ if __name__=='__main__':
   for i in edges:
     v1 = i[0]
     v2 = i[1]
-    graph[v1][v2] = 1
-    graph[v2][v1] = 1
+    graph[v1-1][v2-1] = 1
+    graph[v2-1][v1-1] = 1
   # graph = [[0,1], [0,3], [0,6], [1,2], [1,4], [1,5], [2,3], [2,4], [2,5], [3,6]]
 
   maxCliques(0)

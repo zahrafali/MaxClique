@@ -1,4 +1,5 @@
 import math
+# from icecream import ic
 import sys
 sys.path.append('../')
 from Util.compAB import *
@@ -20,6 +21,7 @@ def Si(i, v):
   return v[i:n]
 
 def clique(U, size):
+  # print(U)
   global max_, c, found, X, OptClique
   global backtrack
   backtrack = backtrack+1
@@ -36,7 +38,7 @@ def clique(U, size):
     if size + len(U) <= max_:
       return
     #assuming vertices start from 0 ... n
-    i = min(U)
+    i = min(U)-1
     if size + c[i] <= max_:
       return
     U.remove(v[i])
@@ -70,18 +72,8 @@ if __name__=='__main__':
   max_ = 0
   found = False
   # creating an adjacency matrix for the graph
-  # test files
-  # string_edges = open('./graphs/brock200_1.clq', 'r').read()
-  # with open("./graphs/MANN_a9.clq", "rb") as fin:
-  #   string_edges = fin.read().decode('utf-8')
-    # print((string_edges.decode('utf-8')))
-  string_edges = open('./graphs/ost.txt', 'r').read()
-  # string_edges = open('./graphs/graphv16_m30_mc7.txt', 'r').read()
-  # string_edges = open('./graphs/graphv16_m60_mc5.txt', 'r').read()
-  # string_edges = open('./graphs/graphv16_m90_mc3.txt', 'r').read()
-  # string_edges = open('./graphs/rand_v100d30_mc6.txt', 'r').read()
-  # string_edges = open('./graphs/rand_v100d50_mc9.txt', 'r').read()
-  # string_edges = open('./graphs/rand_v100d70_mc15.txt', 'r').read()
+  # string_edges = open('./graphs/ost.txt', 'r').read()
+  string_edges = open('./graphs/MANN_a9.clq', 'r').read()
   v = 0
   edges = []
   no_of_edges = 0
@@ -90,8 +82,7 @@ if __name__=='__main__':
   Convert(str1)
   n = no_of_vertices
   v = list(range(1, no_of_vertices+1))
-  print(n, v)
-  graph = [[0 for i in range(n+1)] for j in range(n+1)]
+  graph = [[0 for i in range(n)] for j in range(n)]
   for i in edges:
     v1 = i[0]
     v2 = i[1]
@@ -99,17 +90,17 @@ if __name__=='__main__':
     graph[v2-1][v1-1] = 1
   c=[[0]]*(n)
   X = [0]*(n)
-  # print(graph)
   for i in range(n-1, -1, -1):
     found = False
-    X[0] = i
+    X[0] = i+1
     clique(compAB(v[i], Si(i, v), graph), 1)
     c[i] = max_
   print("\nTime taken to execute - %s seconds\n" % (time.time() - start_time))
   # print("Max Clique = ",OptClique)
   while OptClique[-1] == 0:
         OptClique.pop()
+  print("Clique size - ", len(OptClique))
   print("Max Clique - ", OptClique)
-  print("Backtracking nodes = ", backtrack)
+  print("Backtracking nodes - ", backtrack)
   
   
