@@ -70,7 +70,7 @@ if __name__=='__main__':
   
   # test files
   # string_edges = open('./graphs/ost.txt', 'r').read()
-  string_edges = open('./graphs/MANN_a9.clq', 'r').read()
+  string_edges = open('./graphs/c-fat/c-fat200-2.clq', 'r').read()
   # string_edges = open('./graphs/sample1.txt', 'r').read()
   # string_edges = open('./graphs/sample2.txt', 'r').read()
   # string_edges = open('./graphs/graphv16_m30_mc7.txt', 'r').read()

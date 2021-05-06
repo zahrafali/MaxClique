@@ -1,0 +1,15 @@
+c File:  sanr400_0.5.clq
+c
+c SOURCE: Laura Sanchis (laura@cs.colgate.edu)
+c
+c DESCRIPTION:  Randomly generated graph of similar size to "san"
+c               graphs, but with differenct clique characteristics
+c
+c REFERENCE: "Test Case Construction for the Vertex Cover Problem", 
+c DIMACS Workshop on Computational Support for Discrete Mathematics, 
+c March, 1992, with additional work in a to be published technical
+c report.
+c
+c random graph 400 vertices 39984 edges
+c 400 0.500000 1243
+p edge 400 39984

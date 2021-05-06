@@ -73,7 +73,8 @@ if __name__=='__main__':
   found = False
   # creating an adjacency matrix for the graph
   # string_edges = open('./graphs/ost.txt', 'r').read()
-  string_edges = open('./graphs/MANN_a9.clq', 'r').read()
+  # string_edges = open('./graphs/brock/brock200_4.clq', 'r').read()
+  string_edges = open('./graphs/p_hat/p_hat1000-1.clq', 'r').read()
   v = 0
   edges = []
   no_of_edges = 0

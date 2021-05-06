@@ -1,0 +1,12 @@
+c File:  san400_0.7_1.clq
+c
+c SOURCE: Laura Sanchis (laura@cs.colgate.edu)
+c
+c REFERENCE: "Test Case Construction for the Vertex Cover Problem", 
+c DIMACS Workshop on Computational Support for Discrete Mathematics, 
+c March, 1992, with additional work in a to be published technical
+c report.
+c
+c 400 vertices 55860 edges 40 max clique
+c 400 23940 360 6352 139744 20
+p edge 400 55860

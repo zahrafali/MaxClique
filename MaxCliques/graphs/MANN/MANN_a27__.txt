@@ -1,0 +1,21 @@
+c FILE:  MANN_a27.clq.b
+c
+c By: Carlo Mannino (mannino@iasi.rm.cnr.it)
+c
+c DESCRIPTION: Clique formulation of the Steiner Triple Problem,
+c              translated from the set covering formulation
+c
+c Graph Size: 378    Clique Size: 126
+c
+c Clique Elements are:
+c   2    4    6    8   10   11   13   14   19   30   32   36   39   40   45
+c  48   49   54   57   59   63   66   69   70   75   77   81   83   87   90
+c  93   96   98  101  103  106  110  113  115  118  121  124  128  130  133
+c 138  141  144  147  150  153  156  159  162  165  168  171  174  177  180
+c 183  186  189  192  195  198  201  204  207  210  213  216  219  222  225
+c 228  231  234  237  240  243  245  249  252  254  257  261  264  267  270
+c 272  276  279  282  285  288  291  294  297  300  303  306  309  312  315
+c 316  321  324  325  329  333  336  339  342  343  348  351  352  357  360
+c 363  366  369  372  375  378 *
+c
+c  EDGE DENSITY: 0.9901
