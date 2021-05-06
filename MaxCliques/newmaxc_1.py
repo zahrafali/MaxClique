@@ -1,9 +1,12 @@
+# Changes in graph structure
+# used a dictionary here
+
 import math
 # from icecream import ic
 import sys
 sys.path.append('../')
-from Util.compAB import *
-from Util.convert import *
+from Util.compAB_1 import *
+from Util.convert_1 import *
 import time
 start_time = time.time()
 backtrack = 0
@@ -14,7 +17,7 @@ c = []
 v = []
 n = 0
 X = []
-graph = []
+graph = {}
 
 OptClique = []
 
@@ -22,7 +25,6 @@ def Si(i, v):
   return v[i:n]
 
 def clique(U, size):
-  # print(U)
   global max_, c, found, X, OptClique
   global backtrack
   backtrack = backtrack+1
@@ -52,30 +54,25 @@ def clique(U, size):
     if found == True:
       return
   return
-
+ 
 
 if __name__=='__main__':
   max_ = 0
   found = False
-  # creating an adjacency matrix for the graph
-  # string_edges = open('./graphs/ost.txt', 'r').read()
-  # string_edges = open('./graphs/brock/brock200_4.clq', 'r').read()
+  # string_edges = open('./graphs/samp.txt', 'r').read()
   # string_edges = open('./graphs/c-fat/c-fat500-2.clq', 'r').read()
   string_edges = open('./graphs/p_hat/p_hat500-1.clq', 'r').read()
+  # string_edges = open('./graphs/brock/brock200_4.clq', 'r').read()
+  # string_edges = open('./graphs/c-fat/c-fat500-2.clq', 'r').read()
   v = 0
-  edges = []
+  
   no_of_vertices = 0
+  #preprocess
   processed_graph = Convert(string_edges)
-  edges = processed_graph['edges']
+  graph = processed_graph['graph']
   no_of_vertices = processed_graph['no_of_vertices']
   n = no_of_vertices
-  v = list(range(1, no_of_vertices+1))
-  graph = [[0 for i in range(n)] for j in range(n)]
-  for i in edges:
-    v1 = i[0]
-    v2 = i[1]
-    graph[v1-1][v2-1] = 1
-    graph[v2-1][v1-1] = 1
+  v = list(range(1, n+1))
   c=[[0]]*(n)
   X = [0]*(n)
   for i in range(n-1, -1, -1):
