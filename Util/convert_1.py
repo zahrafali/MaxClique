@@ -1,10 +1,10 @@
+# This function supports dictionary data structure
 # Preprocess input, convert string to integer list
 def Convert(string): 
   details = string
   details = details.partition('\n')[0]
   details = list(details.split(" "))
-  # no_of_edges = details[0]
-  print(details)
+  # print(details)
   no_of_vertices = int(details[1])
   li = list(string.splitlines()[1:])
   
@@ -24,7 +24,6 @@ def Convert(string):
     count = 0
     for j in i.split(" "):
       #incrementing to get the order of the vertex
-      # graph[int(j)]["order"] = graph[int(j)]["order"]+1
       if count == 0:
         e_0 = int(j)
       else:

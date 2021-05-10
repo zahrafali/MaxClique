@@ -1,5 +1,4 @@
-# Changes in graph structure
-# used a dictionary here
+# This program uses a dictionary data structure for the graph
 
 import math
 # from icecream import ic
@@ -32,15 +31,13 @@ def clique(U, size):
     if size > max_:
       max_ = size
       OptClique = X.copy()
-
       found = True
     return
-  
   
   while len(U) != 0:
     if size + len(U) <= max_:
       return
-    #assuming vertices start from 0 ... n
+    #assuming vertices start from 1 ... n
     i = min(U)-1
     if size + c[i] <= max_:
       return
@@ -59,11 +56,8 @@ def clique(U, size):
 if __name__=='__main__':
   max_ = 0
   found = False
-  # string_edges = open('./graphs/samp.txt', 'r').read()
-  # string_edges = open('./graphs/c-fat/c-fat500-2.clq', 'r').read()
-  string_edges = open('./graphs/p_hat/p_hat500-1.clq', 'r').read()
-  # string_edges = open('./graphs/brock/brock200_4.clq', 'r').read()
-  # string_edges = open('./graphs/c-fat/c-fat500-2.clq', 'r').read()
+  string_edges = open('./graphs/samp.txt', 'r').read()
+
   v = 0
   
   no_of_vertices = 0
@@ -81,7 +75,6 @@ if __name__=='__main__':
     clique(compAB(v[i], Si(i, v), graph), 1)
     c[i] = max_
   print("\nTime taken to execute - %s seconds\n" % (time.time() - start_time))
-  # print("Max Clique = ",OptClique)
   while OptClique[-1] == 0:
         OptClique.pop()
   print("Clique size - ", len(OptClique))

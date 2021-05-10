@@ -1,3 +1,5 @@
+# This program uses a dictionary data structure for the graph
+
 import math
 import sys
 sys.path.append('../')
@@ -23,8 +25,6 @@ def maxCliques(l):
   if l > OptSize:
     OptSize = l
     OptClique = X.copy()
-    #remove 0s
-    # OptClique = [i for i in OptClique if i != 0]
   if l > 0:
     # check append, add in specific location, do initial array initialization
     C[l]=(compAB(X[l-1], C[l-1], graph))
@@ -33,15 +33,9 @@ def maxCliques(l):
   
   for i in C[l]:
     if M <= OptSize:
-      # print("**")
       return
-    # print(X, l)
     X[l]=i
     maxCliques(l+1)
-  
-    # do not erase the values of X, you can save the partial solution
-    # X = [0]*(n)
-    # X = []
   return
   
 
@@ -49,7 +43,7 @@ if __name__=='__main__':
   OptSize = 0
   
   # test files
-  string_edges = open('./graphs/p_hat/p_hat500-2.clq', 'r').read()
+  string_edges = open('./graphs/samp.txt', 'r').read()
   V = 0
   no_of_vertices = 0
   processed_graph = Convert(string_edges)
@@ -58,7 +52,6 @@ if __name__=='__main__':
   n = no_of_vertices
   V = list(range(1, no_of_vertices+1))
 
-  # V = [i for i in range(0, n)]
   C=[0]*(n)
   C[0] = V
   v1 = 0
@@ -72,9 +65,6 @@ if __name__=='__main__':
   while OptClique[-1] == 0:
         OptClique.pop()
   print("Clique - ", OptClique)
-  # for i,val in enumerate(OptClique):
-  #   if val!=0:
-  #     print(i)
   print("Backtracking nodes = ", backtrack)
 
   
